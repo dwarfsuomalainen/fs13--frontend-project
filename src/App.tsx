@@ -1,3 +1,4 @@
+import { ThemeProvider } from "@emotion/react";
 import React from "react";
 import {
   BrowserRouter,
@@ -74,7 +75,9 @@ const App = () => {
     //     <Route path="/*" element={<Error404 />} />
     //   </Routes>
     // </BrowserRouter>
+    //<ThemeProvider theme={theme}>
     <RouterProvider router={router} />
+    //</ThemeProvider>
   );
 };
 
