@@ -1,6 +1,13 @@
-
 import React from "react";
-import { BrowserRouter, Route, Routes, Link, Outlet } from "react-router-dom";
+import {
+  BrowserRouter,
+  Route,
+  Routes,
+  Link,
+  Outlet,
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
 
 import Cart from "./pages/Cart";
 import Error404 from "./pages/Error404";
@@ -11,27 +18,63 @@ import Main from "./pages/Main";
 import Product from "./pages/Product";
 import Products from "./pages/Products";
 
+const router = createBrowserRouter([
+  {
+    path: "",
+    element: <Main />,
+    children: [
+      {
+        path: "",
+        element: <Home />,
+      },
+      {
+        path: "login",
+        element: <Login />,
+      },
+      {
+        path: "cart",
+        element: <Cart />,
+      },
+      {
+        path: "info",
+        element: <Info />,
+      },
+      {
+        path: "products",
+        element: <Products />,
+      },
+      {
+        path: "products/:id",
+        element: <Product />,
+      },
+      {
+        path: "*",
+        element: <Error404 />,
+      },
+    ],
+  },
+]);
+
 const App = () => {
   return (
-    <div>
-      <BrowserRouter>
-          <Routes>
-          <Route path="" element={<Main/>}>
-            <Route path="" element={<Home />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/info" element={<Info />} />
-            <Route path="/home" element={<Home />} />
-            <Route path="/products">
-              <Route path="" element={<Products />} />
-              <Route path=":id" element={<Product />} />
-            </Route>
-          </Route>
+    // <BrowserRouter>
+    //   <Routes>
+    //     <Route path="" element={<Main />}>
+    //       <Route path="" element={<Home />} />
+    //       <Route path="/login" element={<Login />} />
+    //       <Route path="/cart" element={<Cart />} />
+    //       <Route path="/info" element={<Info />} />
+    //       <Route path="/home" element={<Home />} />
+    //       <Route path="/products">
+    //         <Route path="" element={<Products />} />
+    //         <Route path=":id" element={<Product />} />
+    //       </Route>
+    //     </Route>
 
-          <Route path="/*" element={<Error404 />} />
-        </Routes>
-      </BrowserRouter>
-    </div>
+    //     <Route path="/*" element={<Error404 />} />
+    //   </Routes>
+    // </BrowserRouter>
+    <RouterProvider router={router} />
   );
 };
 
