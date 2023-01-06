@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { products } from "../types/products";
+import { ProductsType } from "../types/productsType";
 
 const Products = () => {
-  const [productList, setproductList] = useState<products[]>([]);
+  const [productList, setproductList] = useState<ProductsType[]>([]);
   console.log(productList);
   useEffect(() => {
     const fetchList = async () => {
