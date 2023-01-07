@@ -17,6 +17,9 @@ import { mainNavbarItems } from "./navbarListitems";
 import { Label } from "@mui/icons-material";
 import { Router, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import ShoppingCartTwoToneIcon from "@mui/icons-material/ShoppingCartTwoTone";
+import CartButton from "../cart/CartButton";
 
 const pages = ["Home", "products", "info"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -101,8 +104,12 @@ function Navbar() {
               {mainNavbarItems.map((page) => (
                 <MenuItem key={page.label} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">
-    
-                    <Link style={{textDecoration: "none", color: "white"}} to={`/${page.route}`}>{page.route}</Link>
+                    <Link
+                      style={{ textDecoration: "none", color: "white" }}
+                      to={`/${page.route}`}
+                    >
+                      {page.route}
+                    </Link>
                   </Typography>
                 </MenuItem>
               ))}
@@ -136,13 +143,19 @@ function Navbar() {
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
-                <Link style={{textDecoration: "none", color: "white"}}  to={`/${page.route}`}>{page.route}</Link>
+                <Link
+                  style={{ textDecoration: "none", color: "white" }}
+                  to={`/${page.route}`}
+                >
+                  {page.route}
+                </Link>
               </Button>
             ))}
           </Box>
-
+              <CartButton/>
+        
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
+            <Tooltip title="User info">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt="Ö" src="" />
               </IconButton>

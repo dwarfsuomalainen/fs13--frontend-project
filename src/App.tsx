@@ -16,7 +16,7 @@ import Info from "./pages/Info";
 import Login from "./pages/Login";
 import Main from "./pages/Main";
 import Product from "./pages/Product";
-import Products from "./pages/Products";
+import Products from "./components/products/Products";
 
 const router = createBrowserRouter([
   {

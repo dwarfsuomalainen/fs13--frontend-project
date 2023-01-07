@@ -17,6 +17,15 @@ footer {
 .grid_list {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+  padding: 8px;
+}
+
+.card {
+  margin: 8px;
+}
+
+.panel {
+  background: rgba(13, 119, 225, 0.3450980392);
 }
 
 /*# sourceMappingURL=styles.css.map */

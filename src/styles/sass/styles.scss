@@ -20,4 +20,13 @@ footer {
 .grid_list {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+  padding: 8px;
+}
+
+.card {
+  margin: 8px;
+}
+
+.panel{
+  background: #0d77e158
 }
