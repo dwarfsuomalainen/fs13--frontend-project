@@ -1,4 +1,6 @@
-export type ProductsType = {
+import { Category } from "./category";
+
+export interface ProductsType {
   id: number;
   title: string;
   price: number;
@@ -6,5 +8,5 @@ export type ProductsType = {
   images?: [string];
   createdAt?: string;
   updatedAt?: string;
-  category: {};
+  category: Category;
 }

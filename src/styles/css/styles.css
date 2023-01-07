@@ -14,4 +14,9 @@ footer {
   color: aliceblue;
 }
 
+.grid_list {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
 /*# sourceMappingURL=styles.css.map */
