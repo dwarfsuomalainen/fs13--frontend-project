@@ -1,4 +1,3 @@
-import { runInContext } from "vm";
 import mainNavbarItemsInterface from "../../types/mainNavbarItems";
 
 export const mainNavbarItems: mainNavbarItemsInterface[]  = [
