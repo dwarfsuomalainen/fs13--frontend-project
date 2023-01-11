@@ -8,7 +8,6 @@ export const fetchProducts = createAsyncThunk("fetchProducts", async () => {
   try {
     const jsondata: AxiosResponse<ProductsType[], ProductsType> =
       await axiosInstance.get("products");
-    console.log(jsondata.data);
     return jsondata.data;
   } catch (error: any) {
     throw new Error(error.message);

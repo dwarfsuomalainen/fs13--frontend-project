@@ -6,7 +6,7 @@ import {
   CardActions,
   Button,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import { useEffect} from "react";
 import Panel from "../components/panel/Panel";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHook";
 import {
@@ -15,9 +15,6 @@ import {
   sortByName,
   sortByPrice,
 } from "../redux/reducers/productReducer";
-import { MainState } from "../redux/store";
-import { ProductsType } from "../types/productsType";
-import { Padding } from "@mui/icons-material";
 import Product from "../components/product/Product";
 
 const Products = () => {
