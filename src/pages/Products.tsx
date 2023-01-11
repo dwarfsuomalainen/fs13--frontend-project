@@ -7,22 +7,26 @@ import {
   Button,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import Panel from "../panel/Panel";
-import { useAppDispatch, useAppSelector } from "../../hooks/reduxHook";
+import Panel from "../components/panel/Panel";
+import { useAppDispatch, useAppSelector } from "../hooks/reduxHook";
 import {
   deleteProduct,
   fetchProducts,
   sortByName,
   sortByPrice,
-} from "../../redux/reducers/productReducer";
-import { MainState } from "../../redux/store";
-import { ProductsType } from "../../types/productsType";
+} from "../redux/reducers/productReducer";
+import { MainState } from "../redux/store";
+import { ProductsType } from "../types/productsType";
 import { Padding } from "@mui/icons-material";
+import Product from "../components/product/Product";
 
 const Products = () => {
   //const [productList, setproductList] = useState<ProductsType[]>([]);
   const dispatch = useAppDispatch();
   const products = useAppSelector((state) => state.productReducer);
+  const sortName = ()=> {
+    dispatch(sortByName("asc"))
+  }
   const onDelete = (id: string) => {
     dispatch(deleteProduct(id));
   };
@@ -37,12 +41,13 @@ const Products = () => {
   // }, []);
   useEffect(() => {
     dispatch(fetchProducts());
-  },[dispatch]);
+  },[]);
   console.log();
 
   return (
     <div>
-      <Panel />
+      <Panel/>
+      <button onClick={sortName}>Sort by name</button>
       {products.length > 0 && (
         <div className="grid_list">
           {products.map((product) => (
@@ -60,15 +65,16 @@ const Products = () => {
                   {"Category: " + product.category.name}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  {}
+                  {"Price:" + product.price +"€"}
                 </Typography>
               </CardContent>
               <CardActions>
                 <Button size="small">Add to Cart</Button>
-                <Button size="small">Learn More</Button>
+                <Button size="small"
+                onClick={()=> <Product/>}
+                >Learn More</Button>
               </CardActions>
             </Card>
-            //<li key={product.id}>{product.title}</li>
           ))}
         </div>
       )}

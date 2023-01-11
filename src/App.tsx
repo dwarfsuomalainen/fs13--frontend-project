@@ -16,7 +16,10 @@ import Info from "./pages/Info";
 import Login from "./pages/Login";
 import Main from "./pages/Main";
 import Product from "./pages/Product";
-import Products from "./components/products/Products";
+import Products from "./pages/Products";
+import { useAppSelector } from "./hooks/reduxHook";
+import { ThemeProvider } from "@mui/material/styles";
+import { CssBaseline } from "@mui/material";
 
 const router = createBrowserRouter([
   {
@@ -78,7 +81,10 @@ const App = () => {
     //     <Route path="/*" element={<Error404 />} />
     //   </Routes>
     // </BrowserRouter>
+
     <RouterProvider router={router} />
+
+
   );
 };
 

@@ -15,6 +15,32 @@ export const fetchProducts = createAsyncThunk("fetchProducts", async () => {
   }
 });
 
+export const deleteProduct = createAsyncThunk(
+  "deleteProduct",
+  async (id: string) => {
+    try {
+      const jsondata: AxiosResponse<ProductsType[], ProductsType> =
+        await axiosInstance.get(`products/${id}`);
+      return jsondata.data;
+    } catch (error: any) {
+      throw new Error(error.message);
+    }
+  }
+);
+
+export const editProduct = createAsyncThunk(
+  "editProduct",
+  async (id: string) => {
+    try {
+      const jsondata: AxiosResponse<ProductsType[], ProductsType> =
+        await axiosInstance.get(`products/${id}`);
+      return jsondata.data;
+    } catch (error: any) {
+      throw new Error(error.message);
+    }
+  }
+);
+
 const initialState: ProductsType[] = [];
 const productSlice = createSlice({
   name: "productsSlice",
@@ -22,18 +48,6 @@ const productSlice = createSlice({
   reducers: {
     addProduct: (state, action) => {
       state.push(action.payload);
-    },
-    deleteProduct: (state, action) => {
-      return state.filter((item) => item.id !== action.payload);
-    },
-    editProduct: (state, action) => {
-      state.map((product) => {
-        if (product.id === action.payload.id) {
-          return action.payload;
-        } else {
-          return product;
-        }
-      });
     },
     sortByName: (state, action: PayloadAction<"asc" | "desc">) => {
       if (action.payload === "asc") {
@@ -50,17 +64,26 @@ const productSlice = createSlice({
   },
   extraReducers: (build) => {
     build.addCase(fetchProducts.fulfilled, (state, action) => {
-      if (action.payload) {
-        return action.payload;
-      } else {
+      if (action.payload && "message" in action.payload) {
         return state;
+      } else if (!action.payload) {
+        return state;
+      } else {
+        return action.payload;
       }
+    });
+    build.addCase(fetchProducts.rejected, (state, action) => {
+      console.log("fetching error");
+      return state;
+    });
+    build.addCase(fetchProducts.pending, (state, action) => {
+      console.log("data is loading");
+      return state;
     });
   },
 });
 const productReducer = productSlice.reducer;
 export default productReducer;
 export const { addProduct } = productSlice.actions;
-export const { deleteProduct } = productSlice.actions;
 export const { sortByName } = productSlice.actions;
 export const { sortByPrice } = productSlice.actions;
