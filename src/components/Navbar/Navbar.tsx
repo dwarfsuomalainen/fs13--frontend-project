@@ -152,8 +152,8 @@ function Navbar() {
               </Button>
             ))}
           </Box>
-              <CartButton/>
-        
+          <CartButton />
+
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="User info">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>

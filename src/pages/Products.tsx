@@ -7,23 +7,39 @@ import {
   Button,
 } from "@mui/material";
 import { useEffect} from "react";
-import Panel from "../components/panel/Panel";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHook";
 import {
+  createProduct,
   deleteProduct,
   fetchProducts,
   sortByName,
   sortByPrice,
 } from "../redux/reducers/productReducer";
 import Product from "../components/product/Product";
+import { Panel } from "../components/panel/Panel";
 
 const Products = () => {
   //const [productList, setproductList] = useState<ProductsType[]>([]);
   const dispatch = useAppDispatch();
   const products = useAppSelector((state) => state.productReducer);
+  
   const sortName = ()=> {
     dispatch(sortByName("asc"))
   }
+
+  const sortPrice = () =>{
+    dispatch(sortByPrice("asc"))
+  }
+const createNewProduct = ()=>{
+  dispatch(createProduct({
+    "title": "Roman B Test producte ",
+    "price": 10,
+    "description": "A description",
+    "categoryId": 1,
+    "images": ["https://placeimg.com/640/480/any"]
+  }))
+}
+
   const onDelete = (id: string) => {
     dispatch(deleteProduct(id));
   };
@@ -43,8 +59,8 @@ const Products = () => {
 
   return (
     <div>
-      <Panel/>
-      <button onClick={sortName}>Sort by name</button>
+      <Panel sortName={sortName} sortPrice={sortPrice}/>
+      <button onClick={createNewProduct}>Create product</button>
       {products.length > 0 && (
         <div className="grid_list">
           {products.map((product) => (

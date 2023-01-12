@@ -1,8 +1,9 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios, { AxiosResponse } from "axios";
-import { create } from "domain";
+import { stat } from "fs";
+
 import axiosInstance from "../../shared/axiosinstance";
-import { ProductsType } from "../../types/productsType";
+import { CreateProduct, ProductsType } from "../../types/productsType";
 
 export const fetchProducts = createAsyncThunk("fetchProducts", async () => {
   try {
@@ -14,6 +15,18 @@ export const fetchProducts = createAsyncThunk("fetchProducts", async () => {
   }
 });
 
+export const createProduct = createAsyncThunk(
+  "createProduct",
+  async (product: CreateProduct) => {
+    try {
+      const jsondata: AxiosResponse<ProductsType, ProductsType> =
+        await axiosInstance.post("products", product);
+      return jsondata.data;
+    } catch (e) {
+      console.log(e);
+    }
+  }
+);
 export const deleteProduct = createAsyncThunk(
   "deleteProduct",
   async (id: string) => {
@@ -78,6 +91,14 @@ const productSlice = createSlice({
     build.addCase(fetchProducts.pending, (state, action) => {
       console.log("data is loading");
       return state;
+    });
+    build.addCase(createProduct.fulfilled, (state, action) => {
+      if (action.payload) {
+        state.push(action.payload);
+      } else {
+        console.log("product added");
+        return state;
+      }
     });
   },
 });

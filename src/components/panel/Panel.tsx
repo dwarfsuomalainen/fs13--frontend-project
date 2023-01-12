@@ -1,5 +1,5 @@
 import * as React from "react";
-import Tabs from "@mui/material/Tabs";
+import Tabs, { TabsProps } from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import { styled, alpha } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
@@ -13,7 +13,8 @@ import SearchIcon from "@mui/icons-material/Search";
 import { useAppDispatch } from "../../hooks/reduxHook";
 import { Search } from "@mui/icons-material";
 
-export default function ColorTabs() {
+export const Panel = (props: any) => {
+
   const Search = styled("div")(({ theme }) => ({
     position: "relative",
     borderRadius: theme.shape.borderRadius,
@@ -72,8 +73,10 @@ export default function ColorTabs() {
       >
         <Tab value="one" label="Sort by category" />
         <Tab 
+        onClick={props.sortName}
                 value="two" label="Sort by name" />
         <Tab 
+        onClick={props.sortPrice}
         value="three" label="Sort by price" />
       </Tabs>{" "}
       <Search>
@@ -88,6 +91,5 @@ export default function ColorTabs() {
     </Box>
   );
 }
-
 
 
