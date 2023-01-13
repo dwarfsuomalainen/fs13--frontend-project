@@ -1,10 +1,17 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { Action } from "@remix-run/router";
 import axios, { AxiosResponse } from "axios";
 import { stat } from "fs";
 
 import axiosInstance from "../../shared/axiosinstance";
 import { CreateProduct, ProductsType } from "../../types/productsType";
 
+export type ProductSliceType = {
+  error: boolean;
+  loading: boolean;
+  products: ProductsType;
+  productsRef: ProductsType;
+};
 export const fetchProducts = createAsyncThunk("fetchProducts", async () => {
   try {
     const jsondata: AxiosResponse<ProductsType[], ProductsType> =
@@ -29,9 +36,9 @@ export const createProduct = createAsyncThunk(
 );
 export const deleteProduct = createAsyncThunk(
   "deleteProduct",
-  async (id: string) => {
+  async (id: number) => {
     try {
-      const jsondata: AxiosResponse<ProductsType[], ProductsType> =
+      const jsondata: AxiosResponse<ProductsType, ProductsType> =
         await axiosInstance.get(`products/${id}`);
       return jsondata.data;
     } catch (error: any) {
@@ -73,6 +80,18 @@ const productSlice = createSlice({
         state.sort((a, b) => a.price - b.price);
       }
     },
+    onSearchFilter: (state, action) => {
+      return {
+        ...state,
+        products: state.filter((product) => {
+          if (
+            product.title.toLowerCase().includes(action.payload.toLowerCase())
+          ) {
+            return product;
+          }
+        }),
+      };
+    },
   },
   extraReducers: (build) => {
     build.addCase(fetchProducts.fulfilled, (state, action) => {
@@ -100,6 +119,11 @@ const productSlice = createSlice({
         return state;
       }
     });
+    /*build.addCase(deleteProduct.fulfilled, (state, action)=>{
+       if(action.payload) {
+        state.splice()
+       }
+    })*/
   },
 });
 const productReducer = productSlice.reducer;

@@ -10,8 +10,9 @@ import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
-import { useAppDispatch } from "../../hooks/reduxHook";
+import { useAppDispatch, useAppSelector } from "../../hooks/reduxHook";
 import { Search } from "@mui/icons-material";
+import { useState } from "react";
 
 export const Panel = (props: any) => {
 
@@ -61,6 +62,8 @@ export const Panel = (props: any) => {
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
+  const [search, setSearch] = useState("");
+  
 
   return (
     <Box className="panel" sx={{ width: "100%" }}>
@@ -84,8 +87,10 @@ export const Panel = (props: any) => {
           <SearchIcon />
         </SearchIconWrapper>
         <StyledInputBase
+        key={search}
           placeholder="Search..."
           inputProps={{ "aria-label": "search" }}
+          value={props.search} onChange={(e)=>props.setSearch(e.target.value)}
         />
       </Search>
     </Box>

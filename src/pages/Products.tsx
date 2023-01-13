@@ -6,7 +6,7 @@ import {
   CardActions,
   Button,
 } from "@mui/material";
-import { useEffect} from "react";
+import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHook";
 import {
   createProduct,
@@ -17,30 +17,42 @@ import {
 } from "../redux/reducers/productReducer";
 import Product from "../components/product/Product";
 import { Panel } from "../components/panel/Panel";
+import { ProductsType } from "../types/productsType";
 
 const Products = () => {
   //const [productList, setproductList] = useState<ProductsType[]>([]);
   const dispatch = useAppDispatch();
-  const products = useAppSelector((state) => state.productReducer);
+
+  const [search, setSearch] = useState("");
   
-  const sortName = ()=> {
-    dispatch(sortByName("asc"))
-  }
+  const products = useAppSelector(state => state.productReducer) 
 
-  const sortPrice = () =>{
-    dispatch(sortByPrice("asc"))
-  }
-const createNewProduct = ()=>{
-  dispatch(createProduct({
-    "title": "Roman B Test producte ",
-    "price": 10,
-    "description": "A description",
-    "categoryId": 1,
-    "images": ["https://placeimg.com/640/480/any"]
-  }))
-}
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, []);
 
-  const onDelete = (id: string) => {
+ 
+ 
+  const sortName = () => {
+    dispatch(sortByName("asc"));
+  };
+
+  const sortPrice = () => {
+    dispatch(sortByPrice("asc"));
+  };
+  const createNewProduct = () => {
+    dispatch(
+      createProduct({
+        title: "Roman B Test producte ",
+        price: 10,
+        description: "A description",
+        categoryId: 1,
+        images: ["https://placeimg.com/640/480/any"],
+      })
+    );
+  };
+
+  const onDelete = (id: number) => {
     dispatch(deleteProduct(id));
   };
 
@@ -52,19 +64,20 @@ const createNewProduct = ()=>{
   //   };
   //   fetchList()
   // }, []);
-  useEffect(() => {
-    dispatch(fetchProducts());
-  },[]);
-  console.log();
 
   return (
     <div>
-      <Panel sortName={sortName} sortPrice={sortPrice}/>
+      <Panel
+        sortName={sortName}
+        sortPrice={sortPrice}
+        search={search}
+        setSearch={setSearch}
+      />
       <button onClick={createNewProduct}>Create product</button>
       {products.length > 0 && (
         <div className="grid_list">
           {products.map((product) => (
-            <Card className="card" sx={{ maxWidth: 345}}>
+            <Card className="card" sx={{ maxWidth: 345 }}>
               <CardMedia
                 sx={{ height: 140 }}
                 image={product.images?.[0]}
@@ -78,14 +91,17 @@ const createNewProduct = ()=>{
                   {"Category: " + product.category.name}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  {"Price:" + product.price +"€"}
+                  {"Price:" + product.price + "€"}
                 </Typography>
               </CardContent>
               <CardActions>
                 <Button size="small">Add to Cart</Button>
-                <Button size="small"
-                onClick={()=> <Product/>}
-                >Learn More</Button>
+                <Button size="small" onClick={() => <Product />}>
+                  Learn More
+                </Button>
+                <Button onClick={() => onDelete(product.id)} size="small">
+                  Delete product
+                </Button>
               </CardActions>
             </Card>
           ))}
