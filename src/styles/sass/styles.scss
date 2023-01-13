@@ -30,3 +30,26 @@ footer {
 .panel{
   background: #0d77e14e
 }
+
+.cart_header{
+  margin-left: 2rem;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  text-align: left;
+  color:  #1976d2;;
+}
+
+.cart_table{
+  margin-left: 2rem;
+  width: 800px;
+  height: auto;
+
+
+  th {
+    margin-left: 2rem;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    text-align: left;
+    color:  #1976d2;;
+    border-bottom: solid 1px #9c27b0;
+    border-spacing: 0;
+  }
+}

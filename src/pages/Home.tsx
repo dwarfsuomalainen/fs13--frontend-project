@@ -1,9 +1,10 @@
 import React from 'react'
+import Home_slider from '../components/home/Home_slider'
 
 const Home = () => {
   return (
     <div>
-      this is a homepage 
+      <Home_slider/>
     </div>
   )
 }

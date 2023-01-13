@@ -24,7 +24,7 @@ const Products = () => {
   const dispatch = useAppDispatch();
 
   const [search, setSearch] = useState("");
-  
+
   const products = useAppSelector(state => state.productReducer) 
 
   useEffect(() => {
@@ -67,6 +67,7 @@ const Products = () => {
 
   return (
     <div>
+      <h1 className="cart_header">On sale now</h1>
       <Panel
         sortName={sortName}
         sortPrice={sortPrice}

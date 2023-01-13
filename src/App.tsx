@@ -55,6 +55,10 @@ const router = createBrowserRouter([
         element: <Product />,
       },
       {
+        path: "cart",
+        element: <Cart />,
+      },
+      {
         path: "*",
         element: <Error404 />,
       },
@@ -63,7 +67,7 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => {
-  return ( 
+  return (
     // <BrowserRouter>
     //   <Routes>
     //     <Route path="" element={<Main />}>
@@ -83,8 +87,6 @@ const App = () => {
     // </BrowserRouter>
 
     <RouterProvider router={router} />
-
-
   );
 };
 
