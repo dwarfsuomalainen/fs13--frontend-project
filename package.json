@@ -1,6 +1,5 @@
 {
   "name": "frontend",
-  "homepage": "https://dwarfsuomalainen.github.io/fs13-frontend-project",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

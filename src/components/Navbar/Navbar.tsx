@@ -11,13 +11,10 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
-import { Label } from "@mui/icons-material";
-import { Router, useNavigate } from "react-router";
+import {  useNavigate } from "react-router";
 import { Link } from "react-router-dom";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import ShoppingCartTwoToneIcon from "@mui/icons-material/ShoppingCartTwoTone";
+
 import CartButton from "../cart/CartButton";
 import { mainNavbarItems } from "./navbarListitems";
 

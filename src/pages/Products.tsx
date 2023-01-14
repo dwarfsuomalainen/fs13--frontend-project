@@ -6,9 +6,6 @@ import {
   CardActions,
   Button,
   Box,
-  InputBase,
-  styled,
-  alpha,
   TextField,
 } from "@mui/material";
 import { useEffect, useState } from "react";
@@ -21,42 +18,24 @@ import {
   sortByName,
   sortByPrice,
 } from "../redux/reducers/productReducer";
-import Product from "../components/product/ProductCard";
 import { Panel } from "../components/panel/Panel";
-import { ProductsType } from "../types/productsType";
 import { useNavigate } from "react-router";
-import { Search } from "@mui/icons-material";
-import SearchIcon from "@mui/icons-material/Search";
 
 const Products = () => {
-  //const [productList, setproductList] = useState<ProductsType[]>([]);
   const dispatch = useAppDispatch();
   const [search, setSearch] = useState("");
-
   //Search
   const products = useAppSelector((state) => {
     return state.productReducer.filter((item) => {
       return item.title.toLowerCase().indexOf(search.toLowerCase()) > -1;
     });
   });
-
-  // const onFilterList = (search:string, list: ProductsType[])=>{
-  //   if(!search){
-  //     return list
-  //   }
-  //   return list.filter(item=> {
-  //     return item.title.toLowerCase().indexOf(search.toLowerCase()) > -1
-  // })}
-  // const list = onFilterList(search, products)
-  // console.log("list", list)
   useEffect(() => {
     dispatch(fetchProducts());
   }, []);
-
   const sortName = () => {
     dispatch(sortByName("asc"));
   };
-
   const sortPrice = () => {
     dispatch(sortByPrice("asc"));
   };
@@ -71,11 +50,9 @@ const Products = () => {
       })
     );
   };
-
   const onDelete = (id: number) => {
     dispatch(deleteProduct(id));
   };
-
   // useEffect(() => {
   //   const fetchList = async () => {
   //     const resp = await fetch("https://api.escuelajs.co/api/v1/products");
@@ -85,7 +62,6 @@ const Products = () => {
   //   fetchList()
   // }, []);
   const navigate = useNavigate();
-
   return (
     <div>
       <h1 className="cart_header">On sale now</h1>
