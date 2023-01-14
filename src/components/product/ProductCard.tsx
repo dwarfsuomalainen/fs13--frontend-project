@@ -5,7 +5,7 @@ import AddTocart from './AddTocart'
 const Product = () => {
   return (
     <div>
-console.log("product rendered ")
+"product rendered "
     </div>
   )
 }

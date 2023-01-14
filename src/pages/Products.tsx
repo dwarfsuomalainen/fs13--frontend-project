@@ -5,6 +5,11 @@ import {
   Typography,
   CardActions,
   Button,
+  Box,
+  InputBase,
+  styled,
+  alpha,
+  TextField,
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks/reduxHook";
@@ -12,27 +17,42 @@ import {
   createProduct,
   deleteProduct,
   fetchProducts,
+  singleProduct,
   sortByName,
   sortByPrice,
 } from "../redux/reducers/productReducer";
-import Product from "../components/product/Product";
+import Product from "../components/product/ProductCard";
 import { Panel } from "../components/panel/Panel";
 import { ProductsType } from "../types/productsType";
+import { useNavigate } from "react-router";
+import { Search } from "@mui/icons-material";
+import SearchIcon from "@mui/icons-material/Search";
 
 const Products = () => {
   //const [productList, setproductList] = useState<ProductsType[]>([]);
   const dispatch = useAppDispatch();
-
   const [search, setSearch] = useState("");
 
-  const products = useAppSelector(state => state.productReducer) 
+  //Search
+  const products = useAppSelector((state) => {
+    return state.productReducer.filter((item) => {
+      return item.title.toLowerCase().indexOf(search.toLowerCase()) > -1;
+    });
+  });
 
+  // const onFilterList = (search:string, list: ProductsType[])=>{
+  //   if(!search){
+  //     return list
+  //   }
+  //   return list.filter(item=> {
+  //     return item.title.toLowerCase().indexOf(search.toLowerCase()) > -1
+  // })}
+  // const list = onFilterList(search, products)
+  // console.log("list", list)
   useEffect(() => {
     dispatch(fetchProducts());
   }, []);
 
- 
- 
   const sortName = () => {
     dispatch(sortByName("asc"));
   };
@@ -64,16 +84,31 @@ const Products = () => {
   //   };
   //   fetchList()
   // }, []);
+  const navigate = useNavigate();
 
   return (
     <div>
       <h1 className="cart_header">On sale now</h1>
-      <Panel
-        sortName={sortName}
-        sortPrice={sortPrice}
-        search={search}
-        setSearch={setSearch}
-      />
+      <Panel sortName={sortName} sortPrice={sortPrice} />
+
+      <Box className="panel" sx={{ width: "100%" }}>
+        <Box
+          component="form"
+          sx={{
+            "& > :not(style)": { m: 1, width: "25ch" },
+          }}
+          noValidate
+          autoComplete="off"
+        >
+          <TextField
+            id="standard-basic"
+            label="Search..."
+            variant="standard"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+        </Box>
+      </Box>
       <button onClick={createNewProduct}>Create product</button>
       {products.length > 0 && (
         <div className="grid_list">
@@ -97,7 +132,10 @@ const Products = () => {
               </CardContent>
               <CardActions>
                 <Button size="small">Add to Cart</Button>
-                <Button size="small" onClick={() => <Product />}>
+                <Button
+                  onClick={() => navigate("/products/" + product.id)}
+                  size="small"
+                >
                   Learn More
                 </Button>
                 <Button onClick={() => onDelete(product.id)} size="small">

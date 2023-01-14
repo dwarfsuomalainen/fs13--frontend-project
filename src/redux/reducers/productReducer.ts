@@ -47,6 +47,19 @@ export const deleteProduct = createAsyncThunk(
   }
 );
 
+export const singleProduct = createAsyncThunk(
+  "singleProduct",
+  async (id: number) => {
+    try {
+      const jsondata: AxiosResponse<ProductsType, ProductsType> =
+        await axiosInstance.get(`products/${id}`);
+      return jsondata.data;
+    } catch (error: any) {
+      throw new Error(error.message);
+    }
+  }
+);
+
 export const editProduct = createAsyncThunk(
   "editProduct",
   async (id: string) => {
@@ -80,18 +93,18 @@ const productSlice = createSlice({
         state.sort((a, b) => a.price - b.price);
       }
     },
-    onSearchFilter: (state, action) => {
-      return {
-        ...state,
-        products: state.filter((product) => {
-          if (
-            product.title.toLowerCase().includes(action.payload.toLowerCase())
-          ) {
-            return product;
-          }
-        }),
-      };
-    },
+    // onSearchFilter: (state, action) => {
+    //   return {
+    //     ...state,
+    //     products: state.filter((product) => {
+    //       if (
+    //         product.title.toLowerCase().includes(action.payload.toLowerCase())
+    //       ) {
+    //         return product;
+    //       }
+    //     }),
+    //   };
+    // },
   },
   extraReducers: (build) => {
     build.addCase(fetchProducts.fulfilled, (state, action) => {
