@@ -1,6 +1,4 @@
-import { SwipeableDrawer } from "@mui/material";
-import Button from "@mui/material/Button/Button";
-import React from "react";
+
 import { useNavigate } from "react-router";
 
 const Cart = () => {

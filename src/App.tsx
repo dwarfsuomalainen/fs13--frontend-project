@@ -1,13 +1,4 @@
-import React from "react";
-import {
-  BrowserRouter,
-  Route,
-  Routes,
-  Link,
-  Outlet,
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Cart from "./pages/Cart";
 import Error404 from "./pages/Error404";
@@ -17,9 +8,6 @@ import Login from "./pages/Login";
 import Main from "./pages/Main";
 import Product from "./pages/Product";
 import Products from "./pages/Products";
-import { useAppSelector } from "./hooks/reduxHook";
-import { ThemeProvider } from "@mui/material/styles";
-import { CssBaseline } from "@mui/material";
 
 const router = createBrowserRouter([
   {

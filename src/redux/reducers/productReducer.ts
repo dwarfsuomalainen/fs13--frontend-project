@@ -1,7 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Action } from "@remix-run/router";
-import axios, { AxiosResponse } from "axios";
-import { stat } from "fs";
+import { AxiosResponse } from "axios";
 
 import axiosInstance from "../../shared/axiosinstance";
 import { CreateProduct, ProductsType } from "../../types/productsType";

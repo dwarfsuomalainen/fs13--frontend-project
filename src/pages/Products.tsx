@@ -14,7 +14,6 @@ import {
   createProduct,
   deleteProduct,
   fetchProducts,
-  singleProduct,
   sortByName,
   sortByPrice,
 } from "../redux/reducers/productReducer";

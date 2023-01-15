@@ -12,13 +12,12 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
-import {  useNavigate } from "react-router";
+
 import { Link } from "react-router-dom";
 
 import CartButton from "../cart/CartButton";
-import { mainNavbarItems } from "../main_navbar/navbarListitems";
+import { mainNavbarItems } from "./navbarListitems";
 
-const pages = ["Home", "products", "info"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function Navbar_main() {
@@ -42,9 +41,7 @@ function Navbar_main() {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
-    
   };
-  const navigate = useNavigate();
   return (
     <AppBar position="static">
       <Container maxWidth="xl">
@@ -125,14 +122,15 @@ function Navbar_main() {
               mr: 2,
               display: { xs: "flex", md: "none" },
               flexGrow: 1,
-              fontFamily: "'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif",
+              fontFamily:
+                "'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif",
               fontWeight: 700,
               letterSpacing: ".3rem",
               color: "inherit",
               textDecoration: "none",
             }}
           >
-            <span>One more shop</span> 
+            <span>One more shop</span>
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {mainNavbarItems.map((page) => (
