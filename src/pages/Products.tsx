@@ -31,7 +31,7 @@ const Products = () => {
   });
   useEffect(() => {
     dispatch(fetchProducts());
-  }, []);
+  }, [dispatch]);
   const sortName = () => {
     dispatch(sortByName("asc"));
   };
