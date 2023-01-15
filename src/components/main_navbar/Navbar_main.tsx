@@ -16,12 +16,12 @@ import {  useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 
 import CartButton from "../cart/CartButton";
-import { mainNavbarItems } from "./navbarListitems";
+import { mainNavbarItems } from "../main_navbar/navbarListitems";
 
 const pages = ["Home", "products", "info"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
-function Navbar() {
+function Navbar_main() {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
@@ -42,6 +42,7 @@ function Navbar() {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+    
   };
   const navigate = useNavigate();
   return (
@@ -185,4 +186,4 @@ function Navbar() {
     </AppBar>
   );
 }
-export default Navbar;
+export default Navbar_main;
