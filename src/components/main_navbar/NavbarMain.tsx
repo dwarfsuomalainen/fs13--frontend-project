@@ -17,6 +17,7 @@ import { Link } from "react-router-dom";
 
 import CartButton from "../cart/CartButton";
 import { mainNavbarItems } from "./navbarListitems";
+import { transform } from "typescript";
 
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
@@ -100,7 +101,7 @@ function Navbar_main() {
                 <MenuItem key={page.label} onClick={handleCloseNavMenu}>
                   <Typography textAlign="center">
                     <Link
-                      style={{ textDecoration: "none", color: "white" }}
+                      style={{ textDecoration: "none", color: "inherit", textTransform: "capitalize"}}
                       to={`/${page.route}`}
                     >
                       {page.route}
@@ -117,7 +118,7 @@ function Navbar_main() {
             variant="h5"
             noWrap
             component="a"
-            href=""
+            href="/home"
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
@@ -140,7 +141,7 @@ function Navbar_main() {
                 sx={{ my: 2, color: "white", display: "block" }}
               >
                 <Link
-                  style={{ textDecoration: "none", color: "white" }}
+                  style={{ textDecoration: "none", color: "inherit" }}
                   to={`/${page.route}`}
                 >
                   {page.route}
