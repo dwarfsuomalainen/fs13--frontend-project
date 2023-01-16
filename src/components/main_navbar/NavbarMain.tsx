@@ -17,7 +17,6 @@ import { Link } from "react-router-dom";
 
 import CartButton from "../cart/CartButton";
 import { mainNavbarItems } from "./navbarListitems";
-import { transform } from "typescript";
 
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
