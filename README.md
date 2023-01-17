@@ -31,7 +31,7 @@ Application uses [https://fakeapi.platzi.com/](https://fakeapi.platzi.com/) endp
 You can check live demo at [https://cerulean-truffle-683d8d.netlify.app]
 
 ## Project structure
-´´´
+```
 .
 ├── README.md
 ├── package.json
@@ -96,7 +96,7 @@ You can check live demo at [https://cerulean-truffle-683d8d.netlify.app]
 │       ├── productsType.ts
 │       └── user.ts
 └── tsconfig.json
-´´´
+```
 ## Instruction to start the project
 
 In the project directory, you can run:
